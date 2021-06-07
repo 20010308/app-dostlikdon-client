@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import {rootReducer} from "./redux/reducers/rootReducer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 const store = createStore(rootReducer);
 
 ReactDOM.render(
