@@ -4,8 +4,12 @@ const initialState = {
     open: false,
     url: "",
     submenu: false,
-    menus: []
-}
+    menus: [],
+    disabl: false,
+    deleteModal: false,
+    selectedItem: {},
+    selectedIndex: "",
+};
 
 export const menusReducer = (state = initialState, action) => {
     if (action.type === UPDATE_STATE){

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import AdminLayout from "../components/AdminLayout";
-import {updateState, saveMenu, getMenus} from "../redux/actions/menusAction";
+import {updateState, saveMenu, getMenus, deleteMenus} from "../redux/actions/menusAction";
 import {connect} from "react-redux";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {AvForm, AvField} from "availity-reactstrap-validation";
@@ -13,11 +13,10 @@ const AdminMenus = (props) => {
     // };
     useEffect(() => {
         props.getMenus();
-    }, [])
+    }, []);
 
     const generateUrl = (text) => text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
 
-    console.log(generateUrl("Bugun Toshkent Shahrida Svet o'chadi"))
     return (
         <AdminLayout history={props.history}>
             <button type="button" className="btn btn-success d-block ml-auto"
@@ -34,6 +33,7 @@ const AdminMenus = (props) => {
                     <th>Url</th>
                     <th>Submenu</th>
                     <th>Parent Menu</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,6 +47,8 @@ const AdminMenus = (props) => {
                             <td>{item.url}</td>
                             <td>{item.submenu ? "Submenu" : "Submenu emas"}</td>
                             <td>{item.parentMenuName}</td>
+                            <td><button type="button" className="btn btn-primary">Edit</button></td>
+                            <td><button type="button" className="btn btn-danger" onClick={() => props.updateState({deleteModal: !props.deleteModal, selectedIndex: item.id})}>Delete</button></td>
                         </tr>
                     )
                 })}
@@ -58,6 +60,8 @@ const AdminMenus = (props) => {
             <Modal isOpen={props.open} toggle={() => props.updateState({open: false})}>
                 <AvForm onSubmit={props.saveMenu}>
                     <ModalBody>
+
+                        <AvField name="id" value={() => props.menus} type="text" className="inputNone"/>
 
                         <AvField name="nameUz" type="text" onChange={(e) => props.updateState({url: generateUrl(e.target.value)})} label="Name (uz)" required/>
                         <AvField name="nameRu" type="text" label="Name (ru)" required/>
@@ -75,10 +79,20 @@ const AdminMenus = (props) => {
                         }
                     </ModalBody>
                     <ModalFooter>
-                        <button type="submit" className="btn btn-success">Save</button>
+                        <button type="submit" className="btn btn-success" disabled={() => props.updateState({disabl: true})}>Save</button>
                         <button type="button" className="btn btn-secondary" onClick={() => props.updateState({open: false})}>Cancel</button>
                     </ModalFooter>
                 </AvForm>
+            </Modal>
+
+            <Modal isOpen={props.deleteModal} toggle={() => props.updateState({deleteModal: false})}>
+                <ModalHeader toggle={() => props.updateState({deleteModal: false})}>
+                    <h3>Rostdan ham uchirmoqchimisiz</h3>
+                </ModalHeader>
+                <ModalFooter>
+                    <button type="button" className="btn btn-danger" onClick={props.deleteMenus}>Ha</button>
+                    <button type="button" className="btn btn-warning" onClick={() => props.updateState({deleteModal: false})}>Yo'q</button>
+                </ModalFooter>
             </Modal>
         </AdminLayout>
 
@@ -90,8 +104,10 @@ const mapStateToProps = (state) => {
         open: state.menus.open,
         url: state.menus.url,
         submenu: state.menus.submenu,
-        menus: state.menus.menus
+        menus: state.menus.menus,
+        disabl: state.menus.disabl,
+        deleteModal: state.menus.deleteModal,
     }
 };
 
-export default connect(mapStateToProps, {updateState, saveMenu, getMenus})(AdminMenus);
+export default connect(mapStateToProps, {updateState, saveMenu, getMenus, deleteMenus})(AdminMenus);

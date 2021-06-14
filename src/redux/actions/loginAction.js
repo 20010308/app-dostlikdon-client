@@ -10,6 +10,7 @@ export function login(event, errors, values, history) {
                 localStorage.setItem(TOKEN_NAME, res.data.tokenType + " " + res.data.accessToken);
                 dispatch({type: ""});
                 history.push("/admin/menus");
+                toast.success("Muvaffaqiyatli !!!")
             })
             .catch((error) => {
                 toast.error(error.response.data.message);
