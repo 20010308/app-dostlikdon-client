@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {applyMiddleware, compose, createStore} from "redux";
 import {Provider} from "react-redux";
 import {rootReducer} from "./redux/reducers/rootReducer";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css"
 import 'react-toastify/dist/ReactToastify.css';
 import thunk from "redux-thunk";
 import App from './App';

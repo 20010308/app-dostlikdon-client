@@ -17,8 +17,8 @@ const AdminLayout = (props) => {
                 </div>
                 <div className="menu">
                     <ul className="nav flex-column">
-                        <li className="nav-item"><Link to="/admin" className={`nav-link ${props.history.location.pathname === "/admin/menus" ? 'active' : ""}`}>Menular</Link></li>
-                        <li className="nav-item"><Link to="/admin" className={`nav-link ${props.history.location.pathname === "/admin/news" ? 'active' : ""}`}>Yangiliklar</Link></li>
+                        <li className="nav-item"><Link to="/admin/menus" className={`nav-link ${props.history.location.pathname === "/admin/menus" ? 'active' : ""}`}>Menular</Link></li>
+                        <li className="nav-item"><Link to="/admin/news" className={`nav-link ${props.history.location.pathname === "/admin/news" ? 'active' : ""}`}>Yangiliklar</Link></li>
                         <li className="nav-item"><Link to="/admin" className={`nav-link ${props.history.location.pathname === "/admin/" ? 'active' : ""}`}>Yangiliklar</Link></li>
                         <li className="nav-item"><Link to="/admin" className={`nav-link ${props.history.location.pathname === "/admin/" ? 'active' : ""}`}>Yangiliklar</Link></li>
                         <li className="nav-item"><Link to="/admin" className={`nav-link ${props.history.location.pathname === "/admin/" ? 'active' : ""}`}>Yangiliklar</Link></li>

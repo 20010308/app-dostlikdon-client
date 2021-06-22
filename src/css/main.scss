@@ -364,3 +364,52 @@ html{
 .inputNone{
   //display: none;
 }
+
+.submenus{
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 2;
+  background: #00AB7E;
+  box-shadow: 0 5px 15px rgba(12, 122, 93, 0.55);
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+
+  .nav-link{
+    color: #ffffff;
+
+    &:hover{
+      background-color: #008F48;
+    }
+  }
+
+  display: none;
+}
+.photo{
+  position: relative;
+  .hover{
+    padding: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    .span{
+      position: absolute;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
+  }
+}
+.link{
+  &:hover{
+    .submenus{
+      display: block;
+    }
+  }
+}
+

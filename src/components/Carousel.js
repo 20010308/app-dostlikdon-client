@@ -17,22 +17,22 @@ class Carousel extends Component {
             <div className="text-center carousel">
                 <Slider {...settings}>
                     <div>
-                        <img src="/image/don.svg" alt="Error"/>
+                        <img className="w-100" src="/image/don.svg" alt="Error"/>
                     </div>
                     <div>
-                        <img src="/image/don.svg" alt="Error"/>
+                        <img className="w-100" src="/image/don.svg" alt="Error"/>
                     </div>
                     <div>
-                        <img src="/image/don.svg" alt="Error"/>
+                        <img className="w-100" src="/image/don.svg" alt="Error"/>
                     </div>
                     <div>
-                        <img src="/image/don.svg" alt="Error"/>
+                        <img className="w-100" src="/image/don.svg" alt="Error"/>
                     </div>
                     <div>
-                        <img src="/image/don.svg" alt="Error"/>
+                        <img className="w-100" src="/image/don.svg" alt="Error"/>
                     </div>
                     <div>
-                        <img src="/image/don.svg" alt="Error"/>
+                        <img className="w-100" src="/image/don.svg" alt="Error"/>
                     </div>
                 </Slider>
                 <div className="emblema">

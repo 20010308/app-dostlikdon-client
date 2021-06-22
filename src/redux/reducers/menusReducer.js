@@ -9,6 +9,8 @@ const initialState = {
     deleteModal: false,
     selectedItem: {},
     selectedIndex: "",
+    mainMenus: [],
+    subMenus: []
 };
 
 export const menusReducer = (state = initialState, action) => {

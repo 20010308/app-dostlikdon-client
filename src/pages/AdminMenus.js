@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import AdminLayout from "../components/AdminLayout";
-import {updateState, saveMenu, getMenus, deleteMenus} from "../redux/actions/menusAction";
+import {updateState, saveMenu, getMenus, getMainMenus, deleteMenus} from "../redux/actions/menusAction";
 import {connect} from "react-redux";
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {AvForm, AvField} from "availity-reactstrap-validation";
@@ -13,6 +13,7 @@ const AdminMenus = (props) => {
     // };
     useEffect(() => {
         props.getMenus();
+        props.getMainMenus();
     }, []);
 
     const generateUrl = (text) => text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
@@ -33,7 +34,7 @@ const AdminMenus = (props) => {
                     <th>Url</th>
                     <th>Submenu</th>
                     <th>Parent Menu</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +48,7 @@ const AdminMenus = (props) => {
                             <td>{item.url}</td>
                             <td>{item.submenu ? "Submenu" : "Submenu emas"}</td>
                             <td>{item.parentMenuName}</td>
-                            <td><button type="button" className="btn btn-primary">Edit</button></td>
+                            <td><button type="button" className="btn btn-primary" onClick={() => {props.updateState({open: true, selectedItem: item, url: item.url, submenu: item.submenu})}}>Edit</button></td>
                             <td><button type="button" className="btn btn-danger" onClick={() => props.updateState({deleteModal: !props.deleteModal, selectedIndex: item.id})}>Delete</button></td>
                         </tr>
                     )
@@ -55,13 +56,14 @@ const AdminMenus = (props) => {
                 </tbody>
             </table>
 
-
-
-            <Modal isOpen={props.open} toggle={() => props.updateState({open: false})}>
-                <AvForm onSubmit={props.saveMenu}>
+            <Modal isOpen={props.open} toggle={() => props.updateState({open: false, selectedItem: "",submenu:false, url: ""})}>
+                <AvForm onSubmit={props.saveMenu} model={props.selectedItem}>
                     <ModalBody>
+                        {props.selectedItem.id ?
+                            <AvField name="id" type="text" className="inputNone"/>
+                        : ""
+                        }
 
-                        <AvField name="id" value={() => props.menus} type="text" className="inputNone"/>
 
                         <AvField name="nameUz" type="text" onChange={(e) => props.updateState({url: generateUrl(e.target.value)})} label="Name (uz)" required/>
                         <AvField name="nameRu" type="text" label="Name (ru)" required/>
@@ -72,9 +74,13 @@ const AdminMenus = (props) => {
                         <AvField name="submenu" onChange={() => props.updateState({submenu: !props.submenu})} type="checkbox" label="Is Submenu: "/>
 
                         {props.submenu ?
-                            <AvField name="parentMenu" type="select" label="Parent Menu">
-                                <option value="1">1</option>
-                                <option value="1">2</option>
+                            <AvField name="parentId" type="select" label="Parent Menu">
+                                <option >Please choose</option>
+                                {props.mainMenus.map((item, index) => {
+                                    return(
+                                        <option value={item.id}>{item.nameUz}</option>
+                                    )
+                                })}
                             </AvField> : ""
                         }
                     </ModalBody>
@@ -107,7 +113,10 @@ const mapStateToProps = (state) => {
         menus: state.menus.menus,
         disabl: state.menus.disabl,
         deleteModal: state.menus.deleteModal,
+        selectedItem: state.menus.selectedItem,
+        selectedIndex: state.menus.selectedIndex,
+        mainMenus: state.menus.mainMenus
     }
 };
 
-export default connect(mapStateToProps, {updateState, saveMenu, getMenus, deleteMenus})(AdminMenus);
+export default connect(mapStateToProps, {updateState, getMainMenus, saveMenu, getMenus, deleteMenus})(AdminMenus);

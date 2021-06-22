@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import SongiXabarlar from "../components/SongiXabarlar";
 import Basic from "../components/Basic";
 
-
 const Yangiliklar = () => {
     return (
         <div className="yangiliklar">

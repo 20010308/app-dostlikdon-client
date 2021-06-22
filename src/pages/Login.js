@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {login} from "../redux/actions/loginAction";
 
 const Login = (props) => {
-    console.log(props)
+    console.log(props);
     return (
         <div className="container">
             <div className="row vh-100 justify-content-center align-items-center">
