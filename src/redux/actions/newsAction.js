@@ -52,3 +52,13 @@ export const getNewsByCategory = (url) => (dispatch) => {
             dispatch(set_state({newsByCategory: res.data.data}));
         })
 };
+export const getNewsByUrl=(url)=>(dispatch)=>{
+    axios.get(API_PATH+"news/"+url)
+        .then((res)=>{
+            console.log(res);
+
+            dispatch(set_state({newsByUrl: res.data.data}))
+        })
+};
+
+

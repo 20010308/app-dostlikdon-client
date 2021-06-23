@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Navbar from "../components/Navbar";
 import NavbarNav from "../components/NavbarNav";
 import Footer from "../components/Footer";
 import SongiXabarlar from "../components/SongiXabarlar";
 import Basic from "../components/Basic";
+import {getNewsByUrl} from "../redux/actions/newsAction";
+import {connect} from "react-redux";
 
-const Yangiliklar = () => {
+const Yangiliklar = (props) => {
+    useEffect(()=>{
+          props.getNewsByUrl(props.match.params.url)
+        console.log(props)
+    },[])
+
     return (
         <div className="yangiliklar">
             <div className="container">
@@ -17,7 +24,7 @@ const Yangiliklar = () => {
                     <NavbarNav/>
                 </div>
             </div>
-            <Basic/>
+            <Basic news={props.newsByUrl}/>
             <div className="">
                 <SongiXabarlar/>
             </div>
@@ -25,5 +32,10 @@ const Yangiliklar = () => {
         </div>
     );
 };
+const mapStateToProps = (state) =>{
+    return{
+        newsByUrl: state.news.newsByUrl
+    }
+}
 
-export default Yangiliklar;
+export default connect(mapStateToProps,{getNewsByUrl})(Yangiliklar) ;

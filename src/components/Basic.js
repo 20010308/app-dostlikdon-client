@@ -1,6 +1,7 @@
 import React from 'react';
+import {API_PATH} from "../tools/constants";
 
-const Basic = () => {
+const Basic = (props) => {
     return (
         <div className="grey">
             <div className="container">
@@ -10,26 +11,18 @@ const Basic = () => {
 
                             <div className="d-flex mb-5 align-items-center">
                                 <a href="#" className="text-decoration-none mr-4">
-                                    Jamiyat haqida
+                                    {props.news.menuNameUz}
                                 </a>
                                 <img className="mr-2 ml-2" src="/image/packega.svg" alt="Error"/>
-                                    <p className="mb-0 mr-4">16:48 / 12.11.20</p>
+                                    <p className="mb-0 mr-4">{props.news.createdAt?.slice(-8,-3)} / {props.news.createdAt?.slice(0,11)}</p>
                                     <img className="ml-2 mr-2" src="/image/koz.svg" alt="Error"/>
-                                        <a href="#" className="text-decoration-none mr-4 text-dark">321</a>
-                                        <img src="/image/sms.svg" className="ml-2 mr-2" alt="Error"/>
-                                            <p className="mb-0">100</p>
+                                        <a href="#" className="text-decoration-none mr-4 text-dark">{props.news.viewCount}</a>
+                                        {/*<img src="/image/sms.svg" className="ml-2 mr-2" alt="Error"/>*/}
+                                        {/*    <p className="mb-0">100</p>*/}
                             </div>
-                            <h4>Eksport qiluvchi tadbirkorlik subektlariga!!!</h4>
-                            <p className="text">“O‘zdonmaxsulot” aksiyadorlik kompaniyasi tizim korxonalari tomonidan
-                                istisno
-                                tariqasida maxalliy tadbirkorlik sub'ektlariga eksport qilish sharti bilan birja
-                                savdolari orqali bug’doy sotilmoqda. Bug’doy 2019 yil 1 sentyabrgacha 1 tonnasining
-                                boshlangich narxi qo‘shilgan qiymat solig’isiz 1 610 000 so‘mdan, qo‘shilgan qiymat
-                                solig’ini xisobga olgan xolda 1 932 000 so‘mdan sotiladi.
-                                Tadbirkorlik sub'ektlariga “nol'” darajali qo‘shilgan qiymat soligi stavkasini
-                                qo‘llash natijasida xosil bo‘lgan qo‘shilgan qiymat soligining ortiqcha summasi
-                                Adliya vazirligi tomonidan 2016 yil 7 aprelda 2775-son bilan ro‘yxatga olingan Nizomga
-                                asosan qaytarib beriladi.
+                            <h4>{props.news.titleUz}</h4>
+                            <img src={API_PATH + "file/get/"+ props.news.photo} alt=""/>
+                            <p className="text">{props.news.descriptionUz}
                             </p>
 
                             <div className="border my-5"></div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 const Cards = (props) => {
     return (
@@ -17,7 +18,7 @@ const Cards = (props) => {
                 <p>{props.lorem}</p>
             </div>
             <div className="card-footer border-0 bg-white">
-                <button type="button" className="btn btn-outline-success">Batafsil</button>
+                <Link to={"/yangiliklar/"+props.url} className="btn btn-outline-success">Batafsil</Link>
             </div>
         </div>
     );

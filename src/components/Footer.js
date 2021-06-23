@@ -1,4 +1,5 @@
 import React from 'react';
+import {getText} from "../locales";
 
 const Footer = () => {
     return (
@@ -12,7 +13,7 @@ const Footer = () => {
                     </div>
                     <div className="col-1"></div>
                     <div className="col-2 my-5">
-                        <h3>Asosiy</h3>
+                        <h3>{getText("main")}</h3>
                               <p><a href="#">Jamiyat haqida</a></p>
                               <p><a href="#">Struktura</a></p>
                               <p><a href="#">Yangiliklar</a></p>

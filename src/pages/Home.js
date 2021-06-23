@@ -29,7 +29,7 @@ const Home = () => {
                 </div>
             </div>
             <Carousel/>
-            <Props/>
+            <Props news={[]}/>
             <Reference/>
             <Media/>
             <Prop/>

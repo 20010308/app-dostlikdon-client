@@ -8,7 +8,8 @@ const initialState  = {
     deleteModal: false,
     selectedIndex: "",
     selectedItem: {},
-    newsByCategory: []
+    newsByCategory: [],
+    newsByUrl:{}
 };
 
 

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Cards from "./Cards";
 import {API_PATH} from "../tools/constants";
+import {getLanguage} from "../locales";
 
 
 const Props = (props) => {
@@ -33,10 +34,11 @@ const Props = (props) => {
                             <div className="col-4">
                                 <Cards
                                     rasm={API_PATH + "file/get/" + item.photo}
-                                    head={item.titleUz}
+                                    head={getLanguage() === "uz" ? item.titleUz : getLanguage() === "ru" ? item.titleRu : item.titleEn}
                                     lorem={item.descriptionUz}
                                     time={item.createdAt.slice(-8, -3) + " " + item.createdAt.slice(0, 11)}
                                     count={item.viewCount}
+                                    url={item.url}
                                 />
                             </div>
                         )
